@@ -1,0 +1,233 @@
+\documentclass[12pt]{article}
+\usepackage{ctex}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{ulem}
+\usepackage{setspace}
+\usepackage{lastpage}
+\usepackage{fontspec}
+%% \usepackage{fontawesome}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath,amssymb}
+\usepackage{epigraph}
+\usepackage{hyperref}
+\usepackage{tikz}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=cyan,
+}
+\floatname{algorithm}{算法}
+\renewcommand{\algorithmicrequire}{\textbf{输入：}}
+\renewcommand{\algorithmicensure}{\textbf{输出：}}
+\geometry{a4paper,scale=0.8}
+\setCJKmainfont[BoldFont=SimHei,ItalicFont=KaiTi]{SimSun}
+\newfontfamily\tn{Times New Roman}
+\title{\Huge C++基础~~期中考试}
+\author{Jingheng Wang}
+\date{2020 年 12 月 09 日}
+\begin{document}
+	\maketitle
+	\thispagestyle{empty}
+	\begin{center}
+		\begin{tabular}{|p{0.20\textwidth}|p{0.20\textwidth}|p{0.20\textwidth}|p{0.20\textwidth}|}
+		\hline
+		题目名称 & 各位数之和 & 阶乘的末尾 & 进制转换 \\
+		\hline
+		题目类型 & 传统型 & 传统型 & 传统型 \\
+		\hline
+		提交文件名 & \verb|sumdigit.cpp| & \verb|factorial.cpp| & \verb|baseconv.cpp| \\
+		\hline
+		可执行文件名 & \verb|sumdigit| & \verb|factorial| & \verb|baseconv| \\
+		\hline
+		输入文件名 & \verb|标准输入输出| & \verb|标准输入输出| & \verb|标准输入输出| \\
+		\hline
+		输出文件名 & \verb|标准输入输出| & \verb|标准输入输出| & \verb|标准输入输出| \\
+		\hline
+		每个测试点时限 & $1.0\ \mathrm{sec}$ & $1.0\ \mathrm{sec}$ & $1.0\ \mathrm{sec}$ \\
+		\hline
+		内存限制 & $64\ \mathrm{MB}$ & $64\ \mathrm{MB}$ & $64\ \mathrm{MB}$ \\
+		\hline
+		测试点数量 & $10$ & $10$ & $10$ \\
+		\hline
+		单个测试点分值 & $10$ & $10$ & $10$ \\
+		\hline
+		结果比较方式 & 全文比较 & 全文比较 & 全文比较  \\
+		\hline
+		编译选项 & \verb|| & \verb|| & \verb|| \\
+		\hline
+		\end{tabular}\\
+
+		\section*{注意事项}
+		\begin{itemize}
+		\item 文件名必须使用英文小写。
+		\item C++中函数main()的返回值类型必须是int，程序正常结束时的返回值必须是0。
+		\item 程序可使用的栈内存空间限制与题目的内存限制一致。
+		\item 评测时采用的机器配置为：Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz，内存16GB。上述时限以此为标准。
+		\item 提交时应提交一个压缩包，压缩包内包含一个文件夹，文件夹内包含三个以.cpp为后缀的文件。
+		\end{itemize}
+	\end{center}
+	
+	\newpage
+	\begin{center} \section*{\Large 各位数之和（sumdigit）} \end{center}
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyhead[L]{\footnotesize C++基础~~期中考试}
+	\fancyhead[R]{\footnotesize 各位数之和(sumdigit)}
+	\fancyfoot[C]{\footnotesize 第 \thepage 页\quad 共 \pageref{LastPage} 页}
+	
+	\subsection*{\normalsize 【问题描述】}
+	输入一个非负整数，输出其各位数字之和。
+	
+	\subsection*{\normalsize 【输入格式】}
+	一行，为一个非负整数$N$。
+	
+	\subsection*{\normalsize 【输出格式】}
+	一行，为$N$各位上的数字之和。
+	
+	\subsection*{\normalsize 【样例 1 输入】}
+	12345
+	\subsection*{\normalsize 【样例 1 输出】}
+	15
+	\subsection*{\normalsize 【样例 1 解释】}
+	$1+2+3+4+5 = 15$
+	
+	\subsection*{\normalsize 【样例 2 输入】}
+	710385
+	\subsection*{\normalsize 【样例 2 输出】}
+	24
+	\subsection*{\normalsize 【样例 2 解释】}
+	$7+1+0+3+8+5 = 24$
+	\subsection*{\normalsize 【数据规模与约定】}
+	\begin{center}
+		\begin{tabular}{|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|}
+		\hline
+		子任务编号 & $N$ & 其他限制\\
+		\hline
+		$1 \sim 3$ & $N \le 100$ & \multirow{4}{*}{无}\\
+		\cline{1-2}
+		$4 \sim 7$ & $N \le 10^5$ & \\
+		\cline{1-2}
+		$8 \sim 9$ & $N \le 10^9$ & \\
+		\cline{1-2}
+		$10$ & $N \le 10^{12}$ & \\
+		\hline
+		\end{tabular}\\
+	\end{center}
+
+	\newpage
+	\begin{center} \section*{\Large 阶乘的末尾（factorial）} \end{center}
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyhead[L]{\footnotesize C++基础~~期中考试}
+	\fancyhead[R]{\footnotesize 阶乘的末尾(factorial)}
+	\fancyfoot[C]{\footnotesize 第 \thepage 页\quad 共 \pageref{LastPage} 页}
+	
+	\subsection*{\normalsize 【问题描述】}
+	定义一个非负整数$N$的\textbf{阶乘}$N!$为：
+$$
+N~! = 1 \times 2 \times 3 \times \dots N ~(N \ge 1) \\
+0! = 1
+$$
+	小清注意到，有一些阶乘的结果末尾有不少个0。比如，
+$$
+11! = 39916800
+18! = 6402373705728000
+$$
+	小清想知道，对于给定的非负整数$N$，$N!$的末尾一共有多少个0呢？
+	
+	\subsection*{\normalsize 【输入格式】}
+	一行，为一个非负整数$N$。
+	
+	\subsection*{\normalsize 【输出格式】}
+	一行，为$N!$末尾0的个数。答案应为一个非负整数。
+	
+	\subsection*{\normalsize 【样例 1 输入】}
+	18
+	\subsection*{\normalsize 【样例 1 输出】}
+	3
+	\subsection*{\normalsize 【样例 1 解释】}
+	$18! = 6402373705728000$，末尾有3个0。
+	
+	\subsection*{\normalsize 【样例 2 输入】}
+	1300
+	\subsection*{\normalsize 【样例 2 输出】}
+	324
+	\subsection*{\normalsize 【数据规模与约定】}
+	\begin{center}
+		\begin{tabular}{|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|}
+		\hline
+		子任务编号 & $N$ & 其他限制\\
+		\hline
+		$1 \sim 3$ & $N \le 12$ & \multirow{3}{*}{无}\\
+		\cline{1-2}
+		$4 \sim 7$ & $N \le 10^4$ & \\
+		\cline{1-2}
+		$8 \sim 10$ & $N \le 10^9$ & \\
+		\hline
+		\end{tabular}\\
+	\end{center}
+
+	\newpage
+	\begin{center} \section*{\Large 进制转换（baseconv）} \end{center}
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyhead[L]{\footnotesize C++基础~~期中考试}
+	\fancyhead[R]{\footnotesize 进制转换(baseconv)}
+	\fancyfoot[C]{\footnotesize 第 \thepage 页\quad 共 \pageref{LastPage} 页}
+	
+	\subsection*{\normalsize 【问题描述】}
+	给出一个十进制的非负整数$N$，一个进制$b$，请你输出在$b$进制下等同于十进制的$N$的数。
+	
+	\subsection*{\normalsize 【输入格式】}
+	一行，为一个十进制非负整数$N$，和进制$b$，中间用一个空格隔开。
+	
+	\subsection*{\normalsize 【输出格式】}
+	一行，为在$b$进制下的$N$。
+	
+	\subsection*{\normalsize 【样例 1 输入】}
+	50 2
+	\subsection*{\normalsize 【样例 1 输出】}
+	110010
+	\subsection*{\normalsize 【样例 1 解释】}
+	$(110010)_2 = 2^5 + 2^4 + 2^1 = 32 + 16 + 2 = (50)_{10}$, 
+	
+	\subsection*{\normalsize 【样例 2 输入】}
+	97 6
+	\subsection*{\normalsize 【样例 2 输出】}
+	241
+	\subsection*{\normalsize 【样例 2 解释】}
+	$(241)_6 = 2 \times 6^2 + 4 \times 6^1 + 1 \times 6^0 = 72 + 24 + 1 = (97)_{10}$
+
+	\subsection*{\normalsize 【样例 3 输入】}
+	736548641 8
+	\subsection*{\normalsize 【样例 3 输出】}
+	5731553155
+	
+	\subsection*{\normalsize 【数据规模与约定】}
+	\begin{center}
+		\begin{tabular}{|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|p{0.20\textwidth}<{\centering}|}
+		\hline
+		子任务编号 & $N$ & $b$ & 其他限制\\
+		\hline
+		$1$ & $N \le 100$ & $b = 10$ &\multirow{4}{*}{无}\\
+		\cline{1-3}
+		$2 \sim 4$ & $N \le 100$ & $ b = 2 $ & \\
+		\cline{1-3}
+		$5 \sim 7$ & $N \le 10^5$ &  \multirow{2}{*}{$2 \le b \le 10$} & \\
+		\cline{1-2}
+		$8 \sim 10$ & $N \le 10^9$ & &\\
+		\hline
+		\end{tabular}\\
+	\end{center}
+	
+\end{document}
